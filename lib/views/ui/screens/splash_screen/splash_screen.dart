@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:crafty_bay_ecommerce/utils/colors/app_colors.dart';
 import 'package:crafty_bay_ecommerce/utils/user/user_data/save_user_data.dart';
-import 'package:crafty_bay_ecommerce/views/ui/screens/home_screen/home_screen.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
