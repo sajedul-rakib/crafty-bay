@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:crafty_bay_ecommerce/views/ui/screens/category_screen/category_screen.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/home_screen/controller.dart';

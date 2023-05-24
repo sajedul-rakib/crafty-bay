@@ -14,7 +14,6 @@ class ProductCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('product details: ${productData.toString()}');
     return SizedBox(
       width: 140,
       child: InkWell(

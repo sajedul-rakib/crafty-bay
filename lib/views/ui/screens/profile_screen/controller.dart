@@ -14,10 +14,9 @@ class ProfileScreenController extends GetxController {
   Future<bool> readUserData() async {
     _profileScreenInProgress = true;
     update();
-    final response = await NetworkUtils.getRequest(Urls.readProfiles);
+    final response = await NetworkUtils.getRequest(Urls.readProfile);
     _profileScreenInProgress = false;
     if (response.isSuccess) {
-      log(response.responseData);
       SaveLoggedUserData.saveLoggedUserProfileData(response.responseData);
       update();
       return true;
