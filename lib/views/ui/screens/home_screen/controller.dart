@@ -82,9 +82,10 @@ class HomeScreenController extends GetxController {
 
   @override
   void onReady() {
-    getCategoryCartDetails();
     getCarouselSliderDetails();
+    getCategoryCartDetails();
     listProductByRemark(remarkType: 'special');
+
     super.onReady();
   }
 

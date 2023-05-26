@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:crafty_bay_ecommerce/apis/networks/network_caller.dart';
 import 'package:crafty_bay_ecommerce/apis/urls/urls.dart';
 import 'package:get/get.dart';
@@ -12,12 +10,11 @@ class ProfileScreenController extends GetxController {
 
   bool get profileScreenController => _profileScreenInProgress;
 
-  Future<bool> getUserProfileData({token}) async {
+  Future<bool> getUserProfileData() async {
     _profileScreenInProgress = true;
     update();
     final response = await NetworkUtils.getRequest(
       Urls.readProfiles,
-      token: token
     );
     _profileScreenInProgress = false;
     if (response.isSuccess) {
@@ -27,7 +24,6 @@ class ProfileScreenController extends GetxController {
         update();
         return false;
       } else {
-        log(response.responseData['data'].toString());
         SaveLoggedUserData.saveLoggedUserProfileData(response.responseData);
         update();
         return true;
