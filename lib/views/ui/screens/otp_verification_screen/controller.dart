@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:crafty_bay_ecommerce/apis/networks/network_caller.dart';
 import 'package:crafty_bay_ecommerce/utils/user/user_data/save_user_data.dart';
@@ -37,10 +36,10 @@ class OtpVerificationController extends GetxController {
         await NetworkUtils.getRequest(Urls.verifyUser(email: email, otp: otp));
 
     _otpVerificationInProgress = false;
-    log(response.toString());
     if (response.isSuccess) {
-      SaveLoggedUserData.saveLoggedUserToken(
+      await SaveLoggedUserData.saveLoggedUserToken(
           token: response.responseData['data']);
+
       update();
       return true;
     } else {

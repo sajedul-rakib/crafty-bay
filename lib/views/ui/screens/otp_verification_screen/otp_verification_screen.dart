@@ -1,12 +1,15 @@
 import 'dart:developer';
-import 'package:crafty_bay_ecommerce/views/ui/screens/otp_verification_screen/controller.dart';
-import 'package:crafty_bay_ecommerce/widgets/bottom_navigation/bottom_navigation_bar.dart';
-import 'package:get/get.dart';
+
 import 'package:crafty_bay_ecommerce/apis/networks/network_caller.dart';
 import 'package:crafty_bay_ecommerce/utils/colors/app_colors.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/otp_verification_screen/controller.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/profile_screen/controller.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/signin_screen/signin_screen.dart';
+import 'package:crafty_bay_ecommerce/widgets/bottom_navigation/bottom_navigation_bar.dart';
 import 'package:crafty_bay_ecommerce/widgets/common/app_elevated_button.dart';
 import 'package:crafty_bay_ecommerce/widgets/common/screen_title_&_subtitle.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../apis/urls/urls.dart';
@@ -111,7 +114,15 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                 if (response) {
                                   _otpETController.clear();
                                   otpVerificationController.againSetTimer = 0;
-                                  Get.offAll( BottomNavigation());
+                                  final response =
+                                      await Get.find<ProfileScreenController>()
+                                          .readUserData();
+
+                                  if (response) {
+                                    Get.offAll(BottomNavigation());
+                                  } else {
+                                    Get.to(() => const SignInScreen());
+                                  }
                                 } else {
                                   if (mounted) {
                                     ScaffoldMessenger.of(context).showSnackBar(

@@ -9,11 +9,12 @@ class NetworkUtils {
   NetworkUtils._();
 
   static Future<dynamic> getRequest(String url) async {
-    final String userToken=await SaveLoggedUserData.getUserDataByParams('token');
+    final String userToken =
+        await SaveLoggedUserData.getUserDataByParams('token');
     log(userToken.toString());
-    final http.Response response = await http.get(Uri.parse(url),headers: {
-      'content-type':'application/json',
-      'token':userToken.toString()
+    final http.Response response = await http.get(Uri.parse(url), headers: {
+      'content-type': 'application/json',
+      'token': userToken.toString()
     });
 
     try {
@@ -22,8 +23,9 @@ class NetworkUtils {
             statusCode: response.statusCode,
             isSuccess: true,
             responseData: jsonDecode(response.body));
-      } else {
-        ResponseModel(
+      } else if (response.statusCode == 401) {
+        log("unathurized");
+        return ResponseModel(
             statusCode: response.statusCode,
             isSuccess: false,
             responseData: jsonDecode(response.body));
