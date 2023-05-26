@@ -1,16 +1,13 @@
-import 'dart:developer';
-
 import 'package:crafty_bay_ecommerce/views/ui/screens/category_screen/category_screen.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/home_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/widgets/%20app_bar/app_bar.dart';
-import 'package:crafty_bay_ecommerce/widgets/home/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/common/category_cart.dart';
+import '../../../../widgets/home/remarks_title_widgets.dart';
 import '../../../../widgets/home/search_input_text_form_field.dart';
 import '../../../../widgets/product/product_cart.dart';
-import '../../../../widgets/home/remarks_title_widgets.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,9 +30,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 10,
                 ),
-                HomeCarouselSlider(
-                  carouselData: controller.carouselSliderDataModel.data,
-                ),
+                // HomeCarouselSlider(
+                //   carouselData: controller.carouselSliderDataModel.data,
+                // ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -81,7 +78,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                       children: controller.listProductByRemarkDataModel.data
-                          .map<Widget>((singleProduct) =>  ProductCart(productData:singleProduct))
+                          .map<Widget>((singleProduct) =>
+                              ProductCart(productData: singleProduct))
                           .toList()),
                 ),
                 const SizedBox(

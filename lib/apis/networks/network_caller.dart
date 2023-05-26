@@ -8,13 +8,45 @@ import 'package:http/http.dart' as http;
 class NetworkUtils {
   NetworkUtils._();
 
-  static Future<dynamic> getRequest(String url) async {
-    final String userToken=await SaveLoggedUserData.getUserDataByParams('token');
-    log(userToken.toString());
-    final http.Response response = await http.get(Uri.parse(url),headers: {
-      'content-type':'application/json',
-      'token':userToken.toString()
+  static Future<dynamic> getRequest(String url, {token}) async {
+    final userToken = await SaveLoggedUserData.getUserDataByParams('token');
+    log('secondary token: $token');
+    log("token:$userToken");
+    final http.Response response = await http.get(Uri.parse(url), headers: {
+      'content-type': 'application/json',
+      'token': token != null ? userToken.toString() : token.toString()
     });
+
+    try {
+      if (response.statusCode == 200) {
+        return ResponseModel(
+            statusCode: response.statusCode,
+            isSuccess: true,
+            responseData: jsonDecode(response.body));
+      } else if (response.statusCode == 401) {
+        log('Unauthorized');
+        log(response.body);
+        ResponseModel(
+            statusCode: response.statusCode,
+            isSuccess: false,
+            responseData: jsonDecode(response.body));
+      }
+    } catch (e) {
+      log(e.toString());
+      return ResponseModel(
+          statusCode: -1, isSuccess: false, responseData: e.toString());
+    }
+  }
+
+  static Future<dynamic> postRequest(String url, bodyData) async {
+    final String userToken =
+        await SaveLoggedUserData.getUserDataByParams('token');
+    final http.Response response = await http.post(Uri.parse(url),
+        headers: {
+          'content-type': 'application/json',
+          'token': userToken.toString()
+        },
+        body: jsonEncode(bodyData));
 
     try {
       if (response.statusCode == 200) {

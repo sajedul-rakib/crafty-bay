@@ -37,8 +37,7 @@ class ProfileScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
                 onTap: ()async {
-                  bool response=await profileScreenController.readUserData();
-
+                  final response=await profileScreenController.getUserProfileData();
                   if(response){
                     Get.to(() => const ProfileDetailScreen());
                   }else {

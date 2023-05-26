@@ -138,9 +138,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
                 TextButton(
                     onPressed: () async {
+                      if(otpVerificationController.validOtpTimer==0){
+                        _otpETController.clear();
                       await NetworkUtils.getRequest(
                           Urls.logInUsers(widget.email.trim()));
                       otpVerificationController.timer();
+                      }
                     },
                     child: Text(
                       'Resend Code',

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:crafty_bay_ecommerce/views/ui/screens/product_detail_screen/product_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ class ProductCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('product details: ${productData.toString()}');
     return SizedBox(
       width: 140,
       child: InkWell(

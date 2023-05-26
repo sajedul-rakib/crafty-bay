@@ -6,6 +6,7 @@ import 'package:crafty_bay_ecommerce/utils/user/user_data/save_user_data.dart';
 import 'package:get/get.dart';
 
 import '../../../../apis/urls/urls.dart';
+import '../profile_screen/controller.dart';
 
 class OtpVerificationController extends GetxController {
   bool _otpVerificationInProgress = false;
@@ -35,12 +36,12 @@ class OtpVerificationController extends GetxController {
     update();
     final response =
         await NetworkUtils.getRequest(Urls.verifyUser(email: email, otp: otp));
-
     _otpVerificationInProgress = false;
-    log(response.toString());
     if (response.isSuccess) {
-      SaveLoggedUserData.saveLoggedUserToken(
+     await SaveLoggedUserData.saveLoggedUserToken(
           token: response.responseData['data']);
+    await  Get.find<ProfileScreenController>()
+          .getUserProfileData(token: response.responseData['data']);
       update();
       return true;
     } else {

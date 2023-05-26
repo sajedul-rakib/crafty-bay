@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: logInScreenController.logInScreenInProgress
-                        ? const CircularProgressIndicator()
+                        ? const SizedBox(width: 100,child: CircularProgressIndicator())
                         : AppElevatedButton(
                             text: 'Next',
                             onPressed: () async {

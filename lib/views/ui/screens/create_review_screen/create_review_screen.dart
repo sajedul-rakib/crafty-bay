@@ -10,7 +10,7 @@ class CreateReviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(appBarTitle: "Create Review",),
+      appBar: const CustomAppBar(appBarTitle: "Create Review",),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

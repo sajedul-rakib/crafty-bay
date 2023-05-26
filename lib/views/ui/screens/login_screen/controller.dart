@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 
 import '../../../../apis/networks/network_caller.dart';
@@ -18,7 +16,6 @@ class LogInScreenController extends GetxController {
     _logInScreenInProgress = false;
 
     if (response.isSuccess) {
-      log(response.isSuccess.toString());
       update();
       return true;
     } else {

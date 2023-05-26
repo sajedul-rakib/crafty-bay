@@ -44,12 +44,13 @@ class HomeCarouselSlider extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 16.0),
                               child: Image.network(singleCarouselData.image),
                             )),
-
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 25,),
+                              const SizedBox(
+                                height: 25,
+                              ),
                               Text(
                                 singleCarouselData.title,
                                 style: const TextStyle(
