@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/bottom_navigation/bottom_navigation_bar.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -13,21 +14,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 2), () {
       checkUserAreLogged();
     });
     super.initState();
   }
 
-  Future<void> checkUserAreLogged()async {
-    bool isUserLogged=await SaveLoggedUserData.isUserLogged();
-    if(isUserLogged){
-      Get.offAll(()=> BottomNavigation());
-    }else{
-      Get.offAll(()=>LoginScreen());
+  Future<void> checkUserAreLogged() async {
+    bool isUserLogged = await SaveLoggedUserData.isUserLogged();
+    if (isUserLogged) {
+      Get.offAll(() => BottomNavigation());
+    } else {
+      Get.offAll(() => LoginScreen());
     }
   }
 
@@ -39,23 +39,29 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Expanded(
             child: Center(
-              child: Image.asset('assets/images/logo.png',width: 100,)
-            ),
+                child: Image.asset(
+              'assets/images/logo.png',
+              width: 100,
+            )),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              children:  [
+              children: [
                 CircularProgressIndicator(
                   strokeWidth: 4,
                   color: primaryColor,
                 ),
-                const SizedBox(height: 10,),
-                const Text("Version 1.0",style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey
-                ),)
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Version 1.0",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey),
+                )
               ],
             ),
           )

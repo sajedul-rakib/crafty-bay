@@ -39,6 +39,7 @@ class OtpVerificationController extends GetxController {
     if (response.isSuccess) {
       await SaveLoggedUserData.saveLoggedUserToken(
           token: response.responseData['data']);
+
       update();
       return true;
     } else {

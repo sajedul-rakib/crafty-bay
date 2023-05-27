@@ -8,15 +8,16 @@ import 'package:http/http.dart' as http;
 class NetworkUtils {
   NetworkUtils._();
 
-  static Future<dynamic> getRequest(
-    String url,
-  {token}
-  ) async {
-    final userToken = await SaveLoggedUserData.getUserDataByParams('token');
-    log("token:$userToken");
+
+
+
+  static Future<dynamic> getRequest(String url) async {
+    final String userToken =
+        await SaveLoggedUserData.getUserDataByParams('token');
+    log(userToken.toString());
     final http.Response response = await http.get(Uri.parse(url), headers: {
       'content-type': 'application/json',
-    'token':  token ?? userToken.toString()
+      'token': userToken.toString()
     });
 
     try {
@@ -54,8 +55,10 @@ class NetworkUtils {
             statusCode: response.statusCode,
             isSuccess: true,
             responseData: jsonDecode(response.body));
-      } else {
-        ResponseModel(
+      }
+      else if (response.statusCode == 401) {
+        log("unauthorized");
+        return ResponseModel(
             statusCode: response.statusCode,
             isSuccess: false,
             responseData: jsonDecode(response.body));

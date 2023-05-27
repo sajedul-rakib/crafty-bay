@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/common/category_cart.dart';
+import '../../../../widgets/home/carousel_slider.dart';
 import '../../../../widgets/home/remarks_title_widgets.dart';
 import '../../../../widgets/home/search_input_text_form_field.dart';
 import '../../../../widgets/product/product_cart.dart';
@@ -30,9 +31,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 10,
                 ),
-                // HomeCarouselSlider(
-                //   carouselData: controller.carouselSliderDataModel.data,
-                // ),
+
+                HomeCarouselSlider(
+                  carouselData: controller.carouselSliderDataModel.data ?? [],
+                ),
+
                 const SizedBox(
                   height: 20,
                 ),

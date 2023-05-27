@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../utils/colors/app_colors.dart';
@@ -47,7 +49,9 @@ class BottomSheetForShowPriceAndBuyButton extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              log('add to cart function calling');
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 padding:

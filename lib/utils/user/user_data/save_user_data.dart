@@ -1,3 +1,4 @@
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SaveLoggedUserData {
@@ -21,7 +22,6 @@ class SaveLoggedUserData {
   static Future<void> saveLoggedUserProfileData(
       Map<String, dynamic> loggedUserProfileData) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
     sharedPreferences.setString(
         'firstName', loggedUserProfileData['firstName']);
     sharedPreferences.setString('lastName', loggedUserProfileData['lastName']);
