@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:crafty_bay_ecommerce/views/ui/screens/create_review_screen/create_review_screen.dart';
+import 'package:crafty_bay_ecommerce/widgets/bottom_navigation/bottom_navigation_bar.dart';
 import 'package:get/get.dart';
 
 import 'package:crafty_bay_ecommerce/widgets/common/app_elevated_button.dart';
@@ -77,7 +78,7 @@ class SignInScreen extends StatelessWidget {
                       text: 'Complete',
                       onPressed: () {
                         log('Hello');
-                        Get.to(() => const CreateReviewScreen());
+                        Get.to(() =>  BottomNavigation());
                       },
                     ))
               ],
