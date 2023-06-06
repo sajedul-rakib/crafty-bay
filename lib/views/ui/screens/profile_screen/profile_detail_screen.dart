@@ -18,9 +18,9 @@ class ProfileDetailScreen extends StatelessWidget {
                 child: SizedBox(
               height: 300,
               width: MediaQuery.of(context).size.width,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text('Full Name:'),
                   Text("Sajedul Islam Rakib"),
                   Text("Email"),
@@ -33,7 +33,7 @@ class ProfileDetailScreen extends StatelessWidget {
               ),
             )),
           ),
-          AppElevatedButton(text: "Edit Profile")
+          const AppElevatedButton(text: "Edit Profile")
         ],
       ),
     );

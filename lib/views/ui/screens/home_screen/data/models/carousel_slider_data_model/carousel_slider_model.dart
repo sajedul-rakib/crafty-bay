@@ -2,16 +2,16 @@
 
 class CarouselSliderDataModel {
   String? msg;
-  List<CarouselSliderData>? data;
+  List<CarouselSliderData>? carouselData;
 
-  CarouselSliderDataModel({this.msg, this.data});
+  CarouselSliderDataModel({this.msg, this.carouselData});
 
   CarouselSliderDataModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <CarouselSliderData>[];
+      carouselData = <CarouselSliderData>[];
       json['data'].forEach((v) {
-        data!.add(CarouselSliderData.fromJson(v));
+        carouselData!.add(CarouselSliderData.fromJson(v));
       });
     }
   }
@@ -19,8 +19,8 @@ class CarouselSliderDataModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['msg'] = msg;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (carouselData != null) {
+      data['data'] = carouselData!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -1,9 +1,13 @@
 import 'package:crafty_bay_ecommerce/utils/colors/app_colors.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/cart_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/home_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/login_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/otp_verification_screen/controller.dart';
-import 'package:crafty_bay_ecommerce/views/ui/screens/profile_screen/controller.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/product_detail_screen/controller.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/review_screen/controller.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/signin_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/splash_screen/splash_screen.dart';
+import 'package:crafty_bay_ecommerce/views/ui/screens/wishlist_screen/controller.dart';
 import 'package:crafty_bay_ecommerce/widgets/bottom_navigation/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,8 +67,12 @@ class GetxBindings extends Bindings{
     Get.put(BottomNavigationController());
     Get.put(LogInScreenController());
     Get.put(OtpVerificationController());
-    Get.put(ProfileScreenController());
     Get.put(HomeScreenController());
+    Get.put(CompleteProfileController());
+    Get.put(ProductDetailScreenController());
+    Get.put(WishListController());
+    Get.put(ProductReviewController());
+    Get.put(CartScreenController());
   }
 }
 

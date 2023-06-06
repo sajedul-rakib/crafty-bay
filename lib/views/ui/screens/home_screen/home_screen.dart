@@ -31,11 +31,14 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 10,
                 ),
-
-                HomeCarouselSlider(
-                  carouselData: controller.carouselSliderDataModel.data ?? [],
-                ),
-
+                GetBuilder<HomeScreenController>(
+                    builder: (homeScreenController) {
+                  return HomeCarouselSlider(
+                    carouselData: homeScreenController
+                            .carouselSliderDataModel.carouselData ??
+                        [],
+                  );
+                }),
                 const SizedBox(
                   height: 20,
                 ),
@@ -48,13 +51,23 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 10,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: controller.cartCategoryDataModel.data
-                          .map<Widget>((categoryCart) =>
-                              CategoryCart(categoryDetails: categoryCart))
-                          .toList()),
+                SizedBox(
+                  height: 90,
+                  child: GetBuilder<HomeScreenController>(
+                      builder: (homeScreenController) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: homeScreenController
+                                .categoryListModel.categories?.length ??
+                            0,
+                        itemBuilder: (context, index) {
+                          return CategoryCart(
+                            categoryDetails: homeScreenController
+                                    .categoryListModel.categories?[index] ??
+                                [],
+                          );
+                        });
+                  }),
                 ),
                 const SizedBox(
                   height: 20,
@@ -63,12 +76,20 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 20,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: [1, 2, 3, 4, 5]
-                          .map<Widget>((e) => const ProductCart())
-                          .toList()),
+                SizedBox(height: 180,
+                  child: GetBuilder<HomeScreenController>(
+                      builder: (homeScreenController) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: homeScreenController
+                                .listProductByPopularRemark.products?.length ??
+                            0,
+                        itemBuilder: ((context, index) {
+                          return ProductCart(
+                              product: homeScreenController
+                                  .listProductByPopularRemark.products![index]);
+                        }));
+                  }),
                 ),
                 const SizedBox(
                   height: 20,
@@ -77,13 +98,20 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 20,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: controller.listProductByRemarkDataModel.data
-                          .map<Widget>((singleProduct) =>
-                              ProductCart(productData: singleProduct))
-                          .toList()),
+                SizedBox(height: 180,
+                  child: GetBuilder<HomeScreenController>(
+                      builder: (homeScreenController) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: homeScreenController
+                                .listProductBySpecialRemark.products?.length ??
+                            0,
+                        itemBuilder: ((context, index) {
+                          return ProductCart(
+                              product: homeScreenController
+                                  .listProductBySpecialRemark.products![index]);
+                        }));
+                  }),
                 ),
                 const SizedBox(
                   height: 20,
@@ -92,17 +120,24 @@ class HomeScreen extends GetView<HomeScreenController> {
                 const SizedBox(
                   height: 20,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (int i = 0; i < 10; i++) const ProductCart()
-                    ],
-                  ),
+                SizedBox(height: 180,
+                  child: GetBuilder<HomeScreenController>(
+                      builder: (homeScreenController) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: homeScreenController
+                                .listProductByNewRemark.products?.length ??
+                            0,
+                        itemBuilder: ((context, index) {
+                          return ProductCart(
+                              product: homeScreenController
+                                  .listProductByNewRemark.products![index]);
+                        }));
+                  }),
                 ),
-                const SizedBox(
-                  height: 30,
-                )
+                // const SizedBox(
+                //   height: 30,
+                // )
               ],
             ),
           ),

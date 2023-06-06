@@ -2,25 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductColor extends StatefulWidget {
-  ProductColor({
-    super.key,
-  });
+  const ProductColor({super.key, required this.colors});
 
-  final List<Color> colors = [
-    const Color(0xffD500F9),
-    const Color(0xff651FFF),
-    const Color(0xff3D5AFE),
-    const Color(0xff00E5FF),
-    const Color(0xff1DE9B6)
-  ];
-
-  Color selectedColor = const Color(0xffD500F9);
+  final List<Color> colors;
 
   @override
   State<ProductColor> createState() => _ProductColorState();
 }
 
 class _ProductColorState extends State<ProductColor> {
+
+  Color? _selectedColor;
+
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,8 +34,8 @@ class _ProductColorState extends State<ProductColor> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      if (widget.selectedColor != color) {
-                        widget.selectedColor = color;
+                      if (_selectedColor != color) {
+                        _selectedColor = color;
                         if (mounted) {
                           setState(() {});
                         }
@@ -53,7 +48,7 @@ class _ProductColorState extends State<ProductColor> {
                       decoration:
                           BoxDecoration(color: color, shape: BoxShape.circle),
                       child: Visibility(
-                        visible: widget.selectedColor == color,
+                        visible: _selectedColor == color,
                         child: const Icon(
                           color: Colors.white,
                           size: 30,

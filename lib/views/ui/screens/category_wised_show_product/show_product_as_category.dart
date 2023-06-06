@@ -15,16 +15,16 @@ class ShowProductAsCategoryName extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 10,),
-          Expanded(
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                childAspectRatio: .75),
-                itemCount: 500,
-                itemBuilder: (context, index) {
-                  return const ProductCart();
-                }),
-          )
+          // Expanded(
+          //   child: GridView.builder(
+          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //           crossAxisCount: 3,
+          //       childAspectRatio: .75),
+          //       itemCount: 500,
+          //       itemBuilder: (context, index) {
+          //         return const ProductCart();
+          //       }),
+          // )
         ],
       ),
     );

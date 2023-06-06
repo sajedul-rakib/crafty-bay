@@ -14,7 +14,6 @@ class NetworkUtils {
   static Future<dynamic> getRequest(String url) async {
     final String userToken =
         await SaveLoggedUserData.getUserDataByParams('token');
-    log(userToken.toString());
     final http.Response response = await http.get(Uri.parse(url), headers: {
       'content-type': 'application/json',
       'token': userToken.toString()
@@ -39,7 +38,8 @@ class NetworkUtils {
     }
   }
 
-  static Future<dynamic> postRequest(String url, bodyData) async {
+  static Future<dynamic> postRequest(String url,Map<String,dynamic>? body) async {
+    log(body.toString());
     final String userToken =
         await SaveLoggedUserData.getUserDataByParams('token');
     final http.Response response = await http.post(Uri.parse(url),
@@ -47,7 +47,7 @@ class NetworkUtils {
           'content-type': 'application/json',
           'token': userToken.toString()
         },
-        body: jsonEncode(bodyData));
+        body: jsonEncode(body));
 
     try {
       if (response.statusCode == 200) {

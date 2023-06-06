@@ -10,7 +10,7 @@ class InputFormField extends StatelessWidget {
     this.suffixIcon,
     this.textEditingController,
     this.validator,
-    this.keyBoardType,
+    this.keyBoardType, this.isReadable=false,
   });
 
   final String? hintText;
@@ -19,6 +19,7 @@ class InputFormField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final Function(String?)? validator;
   final TextInputType? keyBoardType;
+  final bool isReadable;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class InputFormField extends StatelessWidget {
       },
       keyboardType: keyBoardType,
       controller: textEditingController,
+      readOnly: isReadable,
       maxLines: maxLine ?? 1,
       decoration: InputDecoration(
           prefixIcon: suffixIcon != null ? Icon(suffixIcon) : null,

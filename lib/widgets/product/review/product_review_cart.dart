@@ -1,14 +1,16 @@
+import 'package:crafty_bay_ecommerce/data/models/product/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-
-
-
 
 class ProductReviewCart extends StatelessWidget {
   const ProductReviewCart({
     super.key,
+    required this.reviewDescription,
+    this.profile,
   });
+
+  final String reviewDescription;
+  final Profile? profile;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,9 @@ class ProductReviewCart extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                const Text(
-                  "Sajedul Islam Rakib",
-                  style: TextStyle(
+                Text(
+                  "${profile?.firstName ?? ''} ${profile?.lastName ?? ''}",
+                  style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                       fontSize: 15),
@@ -48,13 +50,9 @@ class ProductReviewCart extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const Text(
-              "It is a long established fact that a reader"
-                  " will be distracted by the readable content"
-                  " of a page when looking at its layout."
-                  " The point of using Lorem Ipsum is that it "
-                  "has a more-or-less normal distribution of",
-              style: TextStyle(
+            Text(
+              reviewDescription,
+              style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.black38),

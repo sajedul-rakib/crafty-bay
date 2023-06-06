@@ -1,19 +1,22 @@
-
-import 'dart:developer';
-
+import 'package:crafty_bay_ecommerce/views/ui/screens/cart_screen/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/colors/app_colors.dart';
 
 class BottomSheetForShowPriceAndBuyButton extends StatelessWidget {
   const BottomSheetForShowPriceAndBuyButton({
     super.key,
-    required int productPrice,
-    required int itemCount,
-  }) : _productPrice = productPrice, _itemCount = itemCount;
+    required this.productPrice,
+    required this.productId,
+    required this.productColor,
+    required this.productSize,
+  });
 
-  final int _productPrice;
-  final int _itemCount;
+  final String productPrice;
+  final String productId;
+  final String? productColor;
+  final String? productSize;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class BottomSheetForShowPriceAndBuyButton extends StatelessWidget {
                     color: Colors.black38),
               ),
               Text(
-                "\$${(_productPrice * _itemCount).toString()}",
+                "\$${productPrice.toString()}",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
@@ -48,20 +51,33 @@ class BottomSheetForShowPriceAndBuyButton extends StatelessWidget {
               )
             ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              log('add to cart function calling');
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
-                padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                elevation: 0),
-            child: const Text(
-              "Add To Cart",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-            ),
-          )
+          GetBuilder<CartScreenController>(builder: (cartScreenController) {
+            return cartScreenController.addCartInProgress
+                ? CircularProgressIndicator(
+                    strokeWidth: 5,
+                    color: primaryColor,
+                  )
+                : ElevatedButton(
+                    onPressed: () async {
+                      await cartScreenController.addCart(cartDetails: {
+                        'productId': productId,
+                        "color": productColor,
+                        "size": productSize
+                      }).then((value) =>
+                          Get.snackbar("Cart add successfully", 'Cart added'));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        elevation: 0),
+                    child: const Text(
+                      "Add To Cart",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                    ),
+                  );
+          })
         ],
       ),
     );

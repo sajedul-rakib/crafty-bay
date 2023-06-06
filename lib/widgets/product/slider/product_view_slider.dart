@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import '../../../utils/colors/app_colors.dart';
 
 class ProductViewSlider extends StatelessWidget {
-  const ProductViewSlider({
-    super.key,
-    required ValueNotifier<int> currentSliderPageIndex,
-  }) : _currentSliderPageIndex = currentSliderPageIndex;
+   ProductViewSlider({
+    super.key, required this.productImages,
+  })  ;
 
-  final ValueNotifier<int> _currentSliderPageIndex;
+
+   final List<String> productImages;
+  final ValueNotifier<int> _currentSliderPageIndex = ValueNotifier(0);
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +19,16 @@ class ProductViewSlider extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         CarouselSlider(
-            items: [1, 2, 3, 4, 5]
-                .map((e) => Container(
+            items: productImages
+                .map((productImage) => Container(
                       margin: const EdgeInsets.symmetric(horizontal: 3),
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                         color: Colors.transparent,
                       ),
                       child: Center(
-                        child: Image.asset(
-                          'assets/images/shoe.png',
+                        child: Image.network(
+                          productImage,
                           width: 250,
                         ),
                       ),
@@ -45,7 +47,7 @@ class ProductViewSlider extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < productImages.length; i++)
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 2),
                     width: 12,

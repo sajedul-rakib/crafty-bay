@@ -1,6 +1,5 @@
 
 import 'package:crafty_bay_ecommerce/views/ui/screens/profile_screen/profile_screen.dart';
-import 'package:crafty_bay_ecommerce/views/ui/screens/signin_screen/signin_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

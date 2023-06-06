@@ -18,13 +18,13 @@ class CategoryScreen extends GetView<HomeScreenController> {
           ),
           Expanded(
             child: GridView.builder(
-                itemCount: controller.cartCategoryDataModel.data.length,
+                itemCount: controller.categoryListModel.categories!.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4),
                 itemBuilder: (context, index) {
                   return CategoryCart(
                     categoryDetails:
-                        controller.cartCategoryDataModel.data[index],
+                        controller.categoryListModel.categories?[index],
                   );
                 }),
           ),

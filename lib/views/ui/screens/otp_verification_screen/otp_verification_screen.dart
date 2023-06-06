@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:crafty_bay_ecommerce/apis/networks/network_caller.dart';
 import 'package:crafty_bay_ecommerce/utils/colors/app_colors.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/otp_verification_screen/controller.dart';
-import 'package:crafty_bay_ecommerce/views/ui/screens/profile_screen/controller.dart';
-import 'package:crafty_bay_ecommerce/views/ui/screens/signin_screen/signin_screen.dart';
 import 'package:crafty_bay_ecommerce/widgets/bottom_navigation/bottom_navigation_bar.dart';
 import 'package:crafty_bay_ecommerce/widgets/common/app_elevated_button.dart';
 import 'package:crafty_bay_ecommerce/widgets/common/screen_title_&_subtitle.dart';
@@ -112,16 +110,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                             .toString());
 
                                 if (response) {
-                                  _otpETController.clear();
-                                  otpVerificationController.againSetTimer = 0;
-                                  final bool response =
-                                      await Get.find<ProfileScreenController>().getUserProfileData();
-
-                                  if (response) {
-                                    Get.offAll(BottomNavigation());
-                                  } else {
-                                    Get.to(() => const SignInScreen());
-                                  }
+                                  Get.offAll(BottomNavigation());
                                 } else {
                                   if (mounted) {
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -148,11 +137,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
                 TextButton(
                     onPressed: () async {
-                      if(otpVerificationController.validOtpTimer==0){
+                      if (otpVerificationController.validOtpTimer == 0) {
                         _otpETController.clear();
-                      await NetworkUtils.getRequest(
-                          Urls.logInUsers(widget.email.trim()));
-                      otpVerificationController.timer();
+                        await NetworkUtils.getRequest(
+                            Urls.logInUsers(widget.email.trim()));
+                        otpVerificationController.timer();
                       }
                     },
                     child: Text(

@@ -1,4 +1,4 @@
-
+import 'package:crafty_bay_ecommerce/views/ui/screens/home_screen/data/models/product.dart';
 import 'package:crafty_bay_ecommerce/views/ui/screens/product_detail_screen/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,18 +6,22 @@ import '../../utils/colors/app_colors.dart';
 
 class ProductCart extends StatelessWidget {
   const ProductCart({
-    Key? key, this.productData,
+    Key? key,
+    this.product,
   }) : super(key: key);
 
-  final dynamic productData;
+  final Product? product;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 140,
+      height: 180,
       child: InkWell(
         onTap: () {
-          Get.to(const ProductDetailScreen());
+          Get.to(ProductDetailScreen(
+            productId: product?.id.toString() ?? "",
+          ));
         },
         borderRadius: BorderRadius.circular(10),
         child: Card(
@@ -36,11 +40,11 @@ class ProductCart extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(10),
                           topLeft: Radius.circular(10))),
-                  child: Image.asset(
-                    'assets/images/shoe.png',
+                  child: Image.network(
+                    '${product?.image ?? ''}',
                     width: 120,
                     height: 90,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),
@@ -49,7 +53,7 @@ class ProductCart extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                       '',
+                      product?.title ?? '',
                       style: TextStyle(
                           fontSize: 12,
                           letterSpacing: 0.3,
@@ -63,7 +67,7 @@ class ProductCart extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$340',
+                          '\$${product?.price ?? ''}',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -74,15 +78,15 @@ class ProductCart extends StatelessWidget {
                         ),
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.star,
                               color: Colors.amber,
                               size: 14,
                             ),
                             Text(
-                              '4.5',
-                              style: TextStyle(
+                              '${product?.star ?? ''}',
+                              style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey),
